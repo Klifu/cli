@@ -1,23 +1,33 @@
 {
-  "name": "@klifu/cli",
-  "version": "0.0.1",
-  "description": "CLI client for your favorite game klifu",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Klifu/cli.git"
-  },
-  "keywords": [
-    "pokemon",
-    "game"
-  ],
-  "author": "Souvik",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Klifu/cli/issues"
-  },
-  "homepage": "https://github.com/Klifu/cli#readme"
+	"name": "cli",
+	"version": "0.0.1",
+	"license": "MIT",
+	"bin": {
+		"klifu": "dist/cli.js"
+	},
+	"type": "module",
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"build": "tsc",
+		"start": "npm run build && node dist/cli.js",
+		"pretest": "npm run build",
+		"test": "xo && ava"
+	},
+	"files": [
+		"dist"
+	],
+	"dependencies": {
+		"@klifu/core": "^1.0.1",
+		"ink": "^3.0.9",
+		"react": "^17.0.2"
+	},
+	"devDependencies": {
+		"@sindresorhus/tsconfig": "^1.0.2",
+		"@types/react": "^17.0.14",
+		"jest": "^27.0.6",
+		"ts-jest": "^27.0.3",
+		"typescript": "^4.3.5"
+	}
 }
