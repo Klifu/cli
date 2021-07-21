@@ -1,17 +1,25 @@
 {
-	"extends": "@sindresorhus/tsconfig",
-	"compilerOptions": {
-		"jsx": "react",
-		"esModuleInterop": true,
-		"outDir": "dist",
-		"declaration": true,
-		"strict": true
-	},
-	"include": [
-		"src"
-	],
-	"exclude": [
-		"node_modules",
+    "compilerOptions": {
+        "target": "es2015",
+        "outDir": "./dist",
+        "strict": true,
+        "jsx": "react",
+        "declaration": true,
+        "strictNullChecks": true,
+        "sourceMap": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "experimentalDecorators": true,
+		"moduleResolution": "node",
+		"module": "CommonJS"
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules",
 		"dist"
-	]
+    ]
 }
