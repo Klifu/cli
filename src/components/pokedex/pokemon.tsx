@@ -1,30 +1,30 @@
-import React, {FunctionComponent} from 'react';
-import {PokemonBase} from '@klifu/core';
-import {Box, Newline, Text} from 'ink';
-import BigText from 'ink-big-text';
-import Gradient from 'ink-gradient';
+import React, { FunctionComponent } from 'react';
+import { PokemonBase } from '@klifu/core';
+import { Box, Newline, Text } from 'ink';
 
-export const PokemonView: FunctionComponent<{pokemon?: PokemonBase}> = ({pokemon}) => {
+export const PokemonView: FunctionComponent<{ pokemon?: PokemonBase }> = ({ pokemon }) => {
 
-	if(!pokemon){
+	if (!pokemon) {
 		return <Text></Text>
 	}
 
-	return <Box flexDirection="column" margin={2} padding={2} borderStyle="bold" width="100%">
-		<Box flexDirection="row">
-			<Text>
-				<Gradient name="pastel">
-					<BigText font="simple" align="center" text={pokemon.name} />
-				</Gradient>
-			</Text>
-		</Box>
+	return <>
+		<Box padding={2} flexDirection="column">
+			<Text color="cyanBright">{pokemon.name} </Text>
+			<Newline />
 
-		<Newline />
+			<Box flexDirection="row">
+				{pokemon.type.map(el => <Text key={el}>{el} </Text>)}
+			</Box>
+			<Newline />
 
-		<Box flexBasis="row" justifyContent="center" >
-			{pokemon.type.map(t => <Box padding={2}>
-				<Text>{t}</Text>
-			</Box>)}
+			<Text>{pokemon.rarity}</Text>
+			<Newline />
+
+			<Text>Attack: {pokemon.baseStat.attack}</Text>
+			<Text>Defense: {pokemon.baseStat.defense}</Text>
+			<Text>HP: {pokemon.baseStat.hp}</Text>
+
 		</Box>
-	</Box>
+	</>
 }

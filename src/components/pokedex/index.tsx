@@ -2,54 +2,56 @@ import React, { FunctionComponent, useState } from 'react';
 import { usePokemonService } from '../../hooks/loader';
 import { Box, Text, useInput } from 'ink';
 import Spinner from 'ink-spinner';
-import { Tabs, Tab } from 'ink-tab';
 import _ from 'lodash';
-import { PokemonBase } from '@klifu/core';
-import { PokemonView } from './pokemon';
+import Table from 'ink-table';
+import { SearchByName } from './search';
+import LoadingView from '../loading';
 
-export const Pokedex: FunctionComponent = () => {
+export const Pokedex: FunctionComponent<{ options: any }> = ({ options }) => {
+
+	if (options.pokemon) {
+		return <SearchByName pokemonName={options.pokemon} />
+	}
+
 	const { loading, pokemonService } = usePokemonService();
-	const [activeTabName, setActiveTabName] = useState<string | null>(null);
 	const [pos, setPos] = useState(0);
 
 	useInput((input, key) => {
-		if (key.downArrow) {
+		if (key.rightArrow) {
+			if (pos <= 13) {
+				setPos(pos + 1);
+			}
+		}
+
+		if (key.leftArrow) {
 			if (pos > 0) {
 				setPos(pos - 1);
 			}
 		}
 
-		if (key.upArrow) {
-			if(pos < ((150/10) - 1 )){
-				setPos(pos + 1);
-			}
-		}
-
-		if(key.escape){
+		if (key.escape) {
 			process.exit();
 		}
 	})
 
 	if (loading || !pokemonService) {
-		return <Text><Spinner type="pong" />{" "} Loading...</Text>
+		return <LoadingView />
 	}
 
-	let pokemons = _.chunk(pokemonService.pokemons, 10);
+	const tableData = pokemonService.pokemons.map(pokemon => ({
+		id: pokemon.id,
+		name: pokemon.name,
+		type: pokemon.type.join(),
+		rarity: pokemon.rarity
+	}))
+
+	const tData = _.chunk(tableData, 10);
+
+
 
 	return <>
 		<Box flexDirection="column" padding={2}>
-			<Tabs onChange={(name: string, activeTab) => {
-				setActiveTabName(name);
-			}} flexDirection="row">
-
-				{pokemons[pos].map(el => <Tab key={el.id} name={el.name}>{el.name}</Tab>)}
-			</Tabs>
-
-			<Box>
-				{(typeof activeTabName === "string") ?
-					<PokemonView pokemon={pokemonService.where().name(activeTabName)} />
-					: null}
-			</Box>
+			<Table data={tData[pos]} />
 		</Box>
 	</>
 }
