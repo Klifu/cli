@@ -1,5 +1,6 @@
 import { Command } from 'commander';
 import { Pokedex } from './components/pokedex/index';
+import { Catch } from './components/catch';
 import { render } from 'ink';
 import React from 'react';
 
@@ -14,9 +15,17 @@ program
 
 program
 	.command('pokedex')
+	.option('-p, --pokemon <pokemon-name>', "pass in pokemon name to search for the pokemon")
 	.description('A digital encyclopedia, which gives information about all pokemons currently in the game')
+	.action((options) => {
+		render(<Pokedex options={options} />)
+	})
+
+program
+	.command('catch')
+	.description("Catch wild pokemon")
 	.action(() => {
-		render(<Pokedex />)
+		render(<Catch />);
 	})
 
 program.on('command:*', (command) => {
@@ -25,4 +34,5 @@ program.on('command:*', (command) => {
 });
 
 program.parse(process.argv);
+
 
