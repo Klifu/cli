@@ -1,6 +1,6 @@
 {
 	"name": "@klifu/cli",
-	"version": "0.0.4",
+	"version": "0.0.14",
 	"license": "MIT",
 	"bin": {
 		"klifu": "dist/cli.js"
@@ -18,7 +18,7 @@
 		"dist"
 	],
 	"dependencies": {
-		"@klifu/core": "^1.0.4",
+		"@klifu/core": "^1.0.6",
 		"commander": "^8.0.0",
 		"dedent": "^0.7.0",
 		"ink": "^3.0.9",
