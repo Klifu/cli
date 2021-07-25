@@ -1,6 +1,6 @@
 {
 	"name": "@klifu/cli",
-	"version": "0.0.20",
+	"version": "0.1.0",
 	"license": "MIT",
 	"bin": {
 		"klifu": "dist/cli.js"
