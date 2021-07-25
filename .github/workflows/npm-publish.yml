@@ -19,6 +19,8 @@ jobs:
         env:
           PACKAGE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm test
+        env:
+          PACKAGE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   publish-npm:
