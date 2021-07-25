@@ -17,7 +17,7 @@ jobs:
           node-version: 14
       - run: npm ci
         env:
-          PACKAGE_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
+          PACKAGE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm test
 
 
