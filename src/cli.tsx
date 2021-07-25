@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { Command } from 'commander';
 import { Pokedex } from './components/pokedex/index';
 import { Catch } from './components/catch';
