@@ -7,7 +7,6 @@ import React from 'react';
 
 const program = new Command();
 
-
 program
 	.name('klifu')
 	.version('0.0.1')
