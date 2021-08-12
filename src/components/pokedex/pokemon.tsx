@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import { PokemonBase } from '@klifu/core';
+import { PokemonBase } from '@klifu/core/dist/types';
 import { Box, Newline, Text } from 'ink';
+import { PokemonTypeColor } from '../../utils/color';
 
 export const PokemonView: FunctionComponent<{ pokemon?: PokemonBase }> = ({ pokemon }) => {
 
@@ -14,7 +15,7 @@ export const PokemonView: FunctionComponent<{ pokemon?: PokemonBase }> = ({ poke
 			<Newline />
 
 			<Box flexDirection="row">
-				{pokemon.type.map(el => <Text key={el}>{el} </Text>)}
+				{pokemon.type.map(el => <Text key={el}><Text bold backgroundColor={PokemonTypeColor.get(el)}> {el} </Text> </Text>)}
 			</Box>
 			<Newline />
 
