@@ -16,13 +16,13 @@ export class PokemonTypeColor {
 		Flying: 'cyan',
 		Ghost: 'magenta',
 		Grass: 'green',
-		Ground: '',
+		Ground: '#BA4A00',
 		Ice: 'blueBright',
 		Normal: 'white',
 		Poison: 'magentaBright',
 		Psychic: 'cyanBright',
-		Rock: '',
-		Steel: '',
+		Rock: '#F39C12',
+		Steel: '#D7BDE2',
 		Water: 'blue'
 	}
 
