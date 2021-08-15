@@ -1,4 +1,12 @@
+import * as path from 'path';
 import { PokemonType } from '@klifu/core/dist/types';
+
+const DIR_PATH = path.resolve(__dirname);
+
+export const filePaths = {
+	pokemons: path.resolve(DIR_PATH, 'pokemons.json')
+}
+
 
 type TypeColors = {
 	[pokemonType in PokemonType]: string;
