@@ -1,5 +1,7 @@
 import * as path from 'path';
-import { PokemonType } from '@klifu/core/dist/types';
+import * as fs from 'fs';
+import { Pokemon, PokemonBase, PokemonType } from '@klifu/core/dist/types';
+import {Cache} from '@klifu/core';
 
 const DIR_PATH = path.resolve(__dirname);
 
@@ -36,5 +38,20 @@ export class PokemonTypeColor {
 
 	static get(pokemonType: PokemonType) {
 		return this.colors[pokemonType];
+	}
+}
+
+export class Stash {
+	private _filePaths = filePaths;
+	async loadPokemonData(): Promise<Array<PokemonBase>> {
+		let pokemons: Array<PokemonBase>
+		if(fs.existsSync(this._filePaths.pokemons)) {
+			pokemons = JSON.parse(fs.readFileSync(this._filePaths.pokemons, 'utf-8'));
+			return pokemons;
+		}else {
+			pokemons = await Cache.pokemons();
+			fs.writeFileSync(this._filePaths.pokemons, JSON.stringify(pokemons), {encoding: 'utf-8'});
+		}
+		return pokemons;
 	}
 }
