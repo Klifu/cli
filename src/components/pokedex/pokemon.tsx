@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { PokemonBase } from '@klifu/core/dist/types';
 import { Box, Newline, Text } from 'ink';
-import { PokemonTypeColor } from '../../utils/color';
+import { PokemonTypeColor } from '../../utils';
 
 export const PokemonView: FunctionComponent<{ pokemon?: PokemonBase }> = ({ pokemon }) => {
 
